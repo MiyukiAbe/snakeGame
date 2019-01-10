@@ -7,7 +7,6 @@ const height = 20; // width and height dimensions of the board
 
 const gol = new GameOfLife(width, height);
 
-
 /**
  * create a table and append to the DOM
  */
@@ -35,7 +34,6 @@ for (let h = 0; h < height; h++) {
 }
 document.getElementById("board").append(table);
 
-
 /**
  * Draws every cell from the gol instance into an actual, visible DOM element
  */
@@ -53,8 +51,7 @@ const paint = () => {
   // HINT:
   //   https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
   //   https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByTagName
-}
-
+};
 
 /**
  * Event Listeners
