@@ -33,7 +33,20 @@ class GameOfLife {
 
   getCell(row, col) {
     //console.log("board", board, "this.board", this.board);
-    let cellState =
+    if (row >= 0 && row < this.height && col >= 0 && col < this.width) {
+      return this.board[row][col];
+    }
+
+  }
+
+  setCell(value, row, col) {
+    if (value === 1 || value === 0) {
+      let cellState = this.getCell(row, col);
+      cellState = value;
+      this.board[row][col] = cellState;
+    }
+
+    return this.board;
   }
   /**
    * Return the amount of living neighbors around a given coordinate.
