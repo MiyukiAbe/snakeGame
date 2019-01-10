@@ -60,46 +60,16 @@ class GameOfLife {
 
   livingNeighbors(row, col) {
     // TODO: Return the count of living neighbors.
-    const newBoard = this.makeBoard(row, col);
-    const counter = livingNeighbors();
-    
-    let value;
-    let iIndex;
-    let jIndex;
-    
-    for (let i = 0; i < this.height; i++) {
-      let counter = 0;
-
-      for (let j = 0; j < this.width; j++) {
-        iIndex = i;
-        jIndex = j;
-        counter +=this.board[i-1][j-1];
-        counter +=this.board[i-1][j];
-        counter +=this.board[i-1][j+1];
-        counter +=this.board[i][j-1];
-        counter +=this.board[i][j+1];
-        counter +=this.board[i+1][j-1];
-        counter +=this.board[i+1][j];
-        counter +=this.board[i+1][j+1];
-       
-        if (this.board[i][j] === 1) {
-          value = 1;
-        } else {
-          value = 0;
-      }
-
-      }
-      if (value === 1 && (counter < 2 || counter > 3)) {
-        newBoard.board[iIndex][jIndex] = 0
-        return newBoard.board;
-      } else if (value === 0 && counter === 3) {
-        newBoard.board[iIndex][jIndex] = 1;
-        return newBoard.board;
-      } else {
-        newBoard.board[iIndex][jIndex] = value;
-        return newBoard.board;
-      }
-    }
+    let counter = 0
+      counter +=this.board[row-1][col-1];
+      counter +=this.board[row-1][col];
+      counter +=this.board[row-1][col+1];
+      counter +=this.board[row][col-1];
+      counter +=this.board[row][col+1];
+      counter +=this.board[row+1][col-1];
+      counter +=this.board[row+1][col];
+      counter +=this.board[row+1][col+1];
+    return counter;
   }
 
   /**
@@ -107,8 +77,9 @@ class GameOfLife {
    */
 
   tick() {
-    
-
+    const newBoard = this.makeBoard();
+    this.board = newBoard;
+    console.log(this.board)
     // TODO: Here is where you want to loop through all the cells
     // on the existing board and determine, based on it's neighbors,
     // whether the cell should be dead or alive in the new board
@@ -118,7 +89,52 @@ class GameOfLife {
     // 1. Count alive neighbors for all cells
     // 2. Set the next state of all cells in newBoard,
     // based on their current alive neighbors
-    this.board = this.livingNeighbors(row, col);
+    //this.board = this.livingNeighbors(row, col);
     return this.board;
   }
 }
+
+
+// livingNeighbors(row, col) {
+//   // TODO: Return the count of living neighbors.
+//   const newBoard = this.makeBoard(row, col);
+//   const counter = livingNeighbors();
+  
+//   let value;
+//   let iIndex;
+//   let jIndex;
+  
+//   for (let i = 0; i < this.height; i++) {
+//     let counter = 0;
+
+//     for (let j = 0; j < this.width; j++) {
+//       iIndex = i;
+//       jIndex = j;
+//       counter +=this.board[i-1][j-1];
+//       counter +=this.board[i-1][j];
+//       counter +=this.board[i-1][j+1];
+//       counter +=this.board[i][j-1];
+//       counter +=this.board[i][j+1];
+//       counter +=this.board[i+1][j-1];
+//       counter +=this.board[i+1][j];
+//       counter +=this.board[i+1][j+1];
+     
+//       if (this.board[i][j] === 1) {
+//         value = 1;
+//       } else {
+//         value = 0;
+//     }
+
+//     }
+//     if (value === 1 && (counter < 2 || counter > 3)) {
+//       newBoard.board[iIndex][jIndex] = 0
+//       return newBoard.board;
+//     } else if (value === 0 && counter === 3) {
+//       newBoard.board[iIndex][jIndex] = 1;
+//       return newBoard.board;
+//     } else {
+//       newBoard.board[iIndex][jIndex] = value;
+//       return newBoard.board;
+//     }
+//   }
+// }
