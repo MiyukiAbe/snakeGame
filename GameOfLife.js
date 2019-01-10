@@ -45,7 +45,13 @@ class GameOfLife {
       cellState = value;
       this.board[row][col] = cellState;
     }
-
+    return this.board;
+  }
+  
+  // We will come back to this one to check
+  toggleCell(row, col) {
+    if (this.board[row][col] === 0) this.board[row][col] = 1;
+    else this.board[row][col] = 0
     return this.board;
   }
   /**
@@ -62,6 +68,44 @@ class GameOfLife {
 
   tick() {
     const newBoard = this.makeBoard();
+    
+    for (let i = 0; i < this.height; i++) {
+      let counter = 0;
+      let value;
+      let iIndex;
+      let jIndex;
+      for (let j = 0; j < this.width; j++) {
+        iIndex = i;
+        jIndex = j;
+        counter +=this.board[i-1][j-1];
+        counter +=this.board[i-1][j];
+        counter +=this.board[i-1][j+1];
+        counter +=this.board[i][j-1];
+        counter +=this.board[i][j+1];
+        counter +=this.board[i+1][j-1];
+        counter +=this.board[i+1][j];
+        counter +=this.board[i+1][j+1];
+       
+        if (this.board[i][j] === 1) {
+          value = 1;
+        } else {
+          value = 0;
+      }
+
+      }
+      
+      if (value === 1 && (counter < 2 || counter > 3)) {
+        newBoard.board[iIndex][jIndex] = 0
+        return newBoard.board;
+      } else if (value === 0 && counter === 3) {
+        newBoard.board[iIndex][jIndex] = 1;
+        return newBoard.board;
+      } else {
+        newBoard.board[iIndex][jIndex] = value;
+        return newBoard.board;
+      }
+        
+    }
     // TODO: Here is where you want to loop through all the cells
     // on the existing board and determine, based on it's neighbors,
     // whether the cell should be dead or alive in the new board
