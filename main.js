@@ -1,11 +1,11 @@
-const width = 25;
+const width = 20;
 const height = 20; // width and height dimensions of the board
 
 /**
- * Create a Game of Life instance
+ * Create a Snake Game instance
  */
 
-const gol = new GameOfLife(width, height);
+const gol = new snakeGame(width, height);
 
 /**
  * create a table and append to the DOM
